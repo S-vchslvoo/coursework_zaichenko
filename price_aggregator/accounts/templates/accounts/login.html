@@ -1,0 +1,38 @@
+{% extends "products/base.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block body_layout %}
+<div class="d-flex justify-content-center align-items-center w-100" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px; border-radius: 15px;">
+        <h3 class="text-center mb-4">Вход</h3>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                Неверный логин или пароль
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-floating mb-3">
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Логин" required>
+                <label for="floatingInput">Логин</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Пароль" required>
+                <label for="floatingPassword">Пароль</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2 fs-5" style="border-radius: 10px;">Войти</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <span class="text-muted">Нет аккаунта?</span>
+            <a href="{% url 'register' %}" class="text-decoration-none fw-bold">Создать</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
